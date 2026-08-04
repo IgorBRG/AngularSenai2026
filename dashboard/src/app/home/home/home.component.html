@@ -1,1 +1,38 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Navbar superior -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="javascript:void(0)">
+        <img src="img/ford.png" alt="Ford Logo" style="height: 40px;">
+      </a>
+      
+      <!-- Passo 7: Link para a página dashboard (será criada na Ação 3) -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active fw-bold" routerLink="/dashboard">Dashboard</a>
+        </li>
+      </ul>
+
+      <!-- Passo 5: Item de logout -->
+      <button class="btn btn-outline-danger" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Sair
+      </button>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal com o cartão centralizado -->
+  <div class="d-flex align-items-center justify-content-center flex-grow-1">
+    <!-- Passo 4: Cartão com informação de boas-vindas -->
+    <div class="card shadow-lg welcome-card">
+      <div class="card-header bg-secondary text-white fw-bold">
+        Sistema de dados FORD
+      </div>
+      <div class="card-body bg-light text-center py-5">
+        <h4 class="card-title text-primary mb-3">Seja bem vindo(a)!</h4>
+        <p class="card-text text-muted">
+          Acesse o dashboard pelo menu superior para visualizar os dados dos veículos conectados.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
