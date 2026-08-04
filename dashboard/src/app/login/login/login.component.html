@@ -1,0 +1,44 @@
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="row w-100 h-100 bg-white">
+    <!-- Image Side -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-light">
+      <img src="img/ranger.png" alt="Ford Ranger" class="img-fluid w-75">
+    </div>
+    
+    <!-- Login Form Side -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <div class="w-75" style="max-width: 400px;">
+        <div class="text-center mb-4">
+          <img src="img/ford.png" alt="Ford Logo" style="width: 150px;">
+        </div>
+        
+        <h4 class="text-center text-success mb-4">Boas-vindas</h4>
+        
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        
+        <form (ngSubmit)="onSubmit()">
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-white"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control bg-light" placeholder="Insira seu e-mail ou usuário" [(ngModel)]="usuario" name="usuario" required>
+          </div>
+          
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-white"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control bg-light" placeholder="Insira sua senha" [(ngModel)]="senha" name="senha" required>
+          </div>
+          
+          <div class="form-check d-flex justify-content-between mb-4">
+            <label class="form-check-label text-muted" for="autoLogin">
+              Logar automaticamente
+            </label>
+            <input class="form-check-input" type="checkbox" id="autoLogin">
+          </div>
+          
+          <button type="submit" class="btn btn-secondary w-100 rounded-pill">Entrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
