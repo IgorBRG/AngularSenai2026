@@ -1,45 +1,46 @@
-<div class="d-flex vh-100">
+<!-- Ícone de Menu Hamburguer (Visível na esquerda superior) -->
+<button class="menu-btn" (click)="toggleMenu()">
+  <i class="bi bi-list"></i>
+</button>
 
-  <!-- Sidebar simulando o menu lateral do protótipo -->
-  <div class="sidebar d-flex flex-column p-3">
-    <div class="text-center mb-4">
-      <img src="/img/ford.png" alt="Ford Logo" style="width: 120px;">
-    </div>
-    
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active text-dark" aria-current="page">
-          <i class="bi bi-house-door me-2"></i> Home
-        </a>
-      </li>
-      <li class="nav-item">
-        <!-- Passo 7: Disponibilizar um link para acesso à página dashboard -->
-        <!-- O link aponta para a rota /dashboard (que será criada na próxima ação) -->
-        <a routerLink="/dashboard" class="nav-link text-dark">
-          <i class="bi bi-speedometer2 me-2"></i> Dashboard
-        </a>
-      </li>
-    </ul>
+<!-- Fundo escuro quando o menu está aberto (clicar fora fecha) -->
+<div class="overlay" [class.ativo]="menuAberto" (click)="toggleMenu()"></div>
 
-    <hr>
-    
-    <!-- Passo 5: Item de logout -->
-    <button class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center" (click)="fazerLogout()" title="Sair do sistema">
-      <i class="bi bi-box-arrow-right me-2"></i> Logout
-    </button>
+<!-- Sidebar (Menu Retrátil) -->
+<div class="sidebar d-flex flex-column p-3 shadow-lg" [class.aberto]="menuAberto">
+  <div class="text-center mb-4 mt-4">
+    <img src="/img/ford.png" alt="Ford Logo" style="width: 100px;">
   </div>
+  
+  <ul class="nav nav-pills flex-column mb-auto mt-2">
+    <li class="nav-item mb-2">
+      <a href="#" class="nav-link active" aria-current="page">
+        <i class="bi bi-house-door me-2"></i> Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <!-- Passo 7: Link para dashboard -->
+      <a routerLink="/dashboard" class="nav-link text-success">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+      </a>
+    </li>
+  </ul>
 
-  <!-- Corpo da página principal (Passo 6: Inserir imagem de fundo) -->
-  <div class="flex-grow-1 bg-home d-flex align-items-center justify-content-center p-5">
-    
-    <!-- Passo 4: Cartão com a informação de boas-vindas -->
-    <div class="card shadow-lg border-0" style="max-width: 500px; background-color: rgba(255, 255, 255, 0.9);">
-      <div class="card-body p-5 text-center">
-        <h4 class="card-title text-muted mb-3">Sistema de dados FORD</h4>
-        <h2 class="text-primary fw-bold">Seja bem vindo(a)!</h2>
-      </div>
+  <hr>
+  
+  <!-- Passo 5: Item de logout -->
+  <button class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center" (click)="fazerLogout()" title="Sair do sistema">
+    <i class="bi bi-box-arrow-right me-2"></i> Logout
+  </button>
+</div>
+
+<!-- Corpo principal (Passo 6: Imagem de fundo ajustada no CSS) -->
+<div class="bg-home d-flex align-items-center justify-content-center">
+  <!-- Passo 4: Cartão de boas-vindas com transparência similar ao protótipo -->
+  <div class="card shadow border-1 border-secondary" style="width: 450px; background-color: rgba(255, 255, 255, 0.85); z-index: 10;">
+    <div class="card-body p-4">
+      <h6 class="card-title text-muted mb-4" style="font-size: 14px;">Sistema de dados FORD</h6>
+      <h4 class="text-info fw-bold m-0" style="color: #0dcaf0 !important;">Seja bem vindo(a)!</h4>
     </div>
-    
   </div>
-
 </div>

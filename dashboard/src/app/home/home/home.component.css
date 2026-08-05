@@ -1,23 +1,62 @@
-/* Passo 6: Inserir imagem de fundo */
-.bg-home {
-  background-image: url('/img/ranger.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Uma leve opacidade ou ajuste caso a imagem fique muito forte */
-  background-color: rgba(255, 255, 255, 0.8);
-  background-blend-mode: overlay;
-}
-
-/* Estilo para a barra lateral simulando o protótipo */
+/* Menu lateral retrátil */
 .sidebar {
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Escondido por padrão */
   width: 250px;
+  height: 100vh;
   background-color: #f8f9fa;
   border-right: 1px solid #dee2e6;
+  transition: left 0.3s ease;
+  z-index: 1050;
+}
+
+.sidebar.aberto {
+  left: 0; /* Aparece quando a classe 'aberto' está presente */
+}
+
+/* Fundo escuro quando o menu está aberto */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Tonalidade verde/escura do protótipo */
+  z-index: 1040;
+  display: none;
+}
+
+.overlay.ativo {
+  display: block;
+}
+
+/* Botão de menu hamburguer (ícone) */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1000;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: #28a745; /* Cor verde parecida com a imagem */
+  cursor: pointer;
+}
+
+/* Imagem de fundo com o carro (Ranger) */
+.bg-home {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  background-image: url('/img/ranger.png');
+  background-size: 70%; /* Imagem menor e com boa resolução */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .nav-link.active {
   background-color: #e2e6ea;
   font-weight: bold;
+  color: #28a745 !important;
 }

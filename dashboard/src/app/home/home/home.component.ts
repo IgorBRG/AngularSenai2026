@@ -9,12 +9,18 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  // Injetando o Router para podermos fazer a navegação de logout
+  // Variável para controlar se o menu lateral (sidebar) está aberto ou fechado
+  menuAberto = false;
+
   constructor(private router: Router) {}
 
-  // Função que será chamada quando o usuário clicar em Sair (Logout)
+  // Função para alternar o estado do menu (abrir/fechar)
+  toggleMenu() {
+    this.menuAberto = !this.menuAberto;
+  }
+
+  // Função chamada ao clicar em Sair
   fazerLogout() {
-    // Aqui nós apenas mandamos o usuário de volta para a tela de login
     this.router.navigate(['/login']);
   }
 
