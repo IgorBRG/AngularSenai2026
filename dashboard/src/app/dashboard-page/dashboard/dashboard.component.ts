@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  // Controle do formulário para o campo de busca (Passo 8)
+  // Controle do formulário para o select (Passo 8)
   searchControl = new FormControl('');
   
   // Lista de todos os veículos retornados do backend
   todosVeiculos: Vehicle[] = [];
   
-  // Lista de veículos filtrada que será mostrada na tela
-  veiculosFiltrados: Vehicle[] = [];
+  // Variável para guardar o veículo que foi selecionado no select
+  veiculoSelecionado: Vehicle | undefined;
 
   constructor(
     private vehicleService: VehicleService,
@@ -30,32 +30,20 @@ export class DashboardComponent implements OnInit {
     // Busca todos os dados do back-end ao carregar a página
     this.vehicleService.getVehicles().subscribe((data) => {
       this.todosVeiculos = data;
-      this.veiculosFiltrados = data;
     });
 
-    // Observa as mudanças no campo de busca utilizando RxJS conforme exigido no Passo 8
+    // Observa as mudanças no select utilizando RxJS conforme exigido no Passo 8
     this.searchControl.valueChanges
       .pipe(
-        // 'map' pode substituir o 'pluck' para extrair o valor com segurança de tipos, 
-        // mas aqui o valueChanges já nos dá a string, então garantimos que é string e minúscula
-        map(valor => (valor || '').trim().toLowerCase()),
+        // Extrai o valor do veículo selecionado (como se fosse o pluck)
+        map(valor => valor),
         
-        // Espera 300ms após o usuário parar de digitar para não filtrar a cada tecla instantaneamente
-        debounceTime(300),
-        
-        // Evita fazer a mesma busca duas vezes seguidas
+        // Evita chamadas repetidas se o valor for o mesmo
         distinctUntilChanged()
       )
-      .subscribe((termoBusca) => {
-        // Se houver algo digitado (poderíamos usar 'filter' também se quiséssemos ignorar buscas curtas)
-        if (termoBusca) {
-          this.veiculosFiltrados = this.todosVeiculos.filter(v => 
-            v.vehicle.toLowerCase().includes(termoBusca)
-          );
-        } else {
-          // Se limpar o campo, volta a mostrar todos
-          this.veiculosFiltrados = this.todosVeiculos;
-        }
+      .subscribe((nomeVeiculoSelecionado) => {
+        // Encontra o veículo completo correspondente ao nome
+        this.veiculoSelecionado = this.todosVeiculos.find(v => v.vehicle === nomeVeiculoSelecionado);
       });
   }
 
