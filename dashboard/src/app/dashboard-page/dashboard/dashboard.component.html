@@ -30,15 +30,17 @@
   <div class="flex-grow-1 p-4 overflow-auto text-center">
     <h3 class="text-primary fw-bold mb-5" style="color: #0b5ed7 !important;">Dashboard FORD</h3>
 
-    <!-- Passo 8: Cartão com campo de busca (Select) por nome do modelo do veículo -->
-    <div class="d-flex justify-content-start mb-4">
-      <div class="card shadow-sm border-secondary" style="width: 250px;">
+    <!-- Linha de cartões (Passo 8 e Passo 9) -->
+    <div class="d-flex justify-content-center gap-4 mb-5 flex-wrap">
+      
+      <!-- Passo 8: Cartão com campo de busca (Select) por nome do modelo do veículo -->
+      <div class="card shadow-sm border-secondary" style="width: 220px;">
         <div class="card-header bg-white border-bottom-0 pt-3 pb-0 text-start">
-          <span class="text-muted fw-bold">Veículo</span>
+          <span class="text-muted fw-bold" style="font-size: 14px;">Veículo</span>
         </div>
         <div class="card-body">
           <select 
-            class="form-select form-select-lg border-primary text-primary fw-bold" 
+            class="form-select border-primary text-primary fw-bold" 
             [formControl]="searchControl"
           >
             <option value="" disabled selected>Selecione...</option>
@@ -48,11 +50,45 @@
           </select>
         </div>
       </div>
+
+      <!-- Passo 9: Cartão Total de Vendas -->
+      <div class="card shadow-sm border-secondary" style="width: 220px;">
+        <div class="card-header bg-white border-bottom-0 pt-3 pb-2 text-start">
+          <span class="text-muted fw-bold" style="font-size: 14px;">Total de Vendas</span>
+        </div>
+        <div class="card-body text-start pt-0">
+          <h3 class="text-info fw-bold m-0" style="color: #0dcaf0 !important;">{{ veiculoSelecionado?.volumetotal || 0 }}</h3>
+          <span class="text-muted small">Unid.</span>
+        </div>
+      </div>
+
+      <!-- Passo 9: Cartão Conectados -->
+      <div class="card shadow-sm border-secondary" style="width: 220px;">
+        <div class="card-header bg-white border-bottom-0 pt-3 pb-2 text-start">
+          <span class="text-muted fw-bold" style="font-size: 14px;">Conectados</span>
+        </div>
+        <div class="card-body text-start pt-0">
+          <h3 class="text-info fw-bold m-0" style="color: #0dcaf0 !important;">{{ veiculoSelecionado?.connected || 0 }}</h3>
+          <span class="text-muted small">Unid.</span>
+        </div>
+      </div>
+
+      <!-- Passo 9: Cartão Update Software -->
+      <div class="card shadow-sm border-secondary" style="width: 220px;">
+        <div class="card-header bg-white border-bottom-0 pt-3 pb-2 text-start">
+          <span class="text-muted fw-bold" style="font-size: 14px;">Update Software</span>
+        </div>
+        <div class="card-body text-start pt-0">
+          <h3 class="text-info fw-bold m-0" style="color: #0dcaf0 !important;">{{ veiculoSelecionado?.softwareUpdates || 0 }}</h3>
+          <span class="text-muted small">Unid.</span>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Área reservada para a imagem do carro (será preenchida nos próximos passos, mas podemos mostrar provisoriamente para testar a img corrigida na API) -->
-    <div class="mt-5" *ngIf="veiculoSelecionado">
-      <img [src]="veiculoSelecionado.img" alt="Imagem do veículo" style="max-width: 600px; width: 100%;">
+    <!-- Área da Imagem do Carro (já estava aqui, mas agora fica logo abaixo dos cartões) -->
+    <div class="text-center" *ngIf="veiculoSelecionado" style="margin-bottom: 40px;">
+      <img [src]="veiculoSelecionado.img" alt="Imagem do veículo" style="max-width: 500px; width: 100%;">
     </div>
 
   </div>
